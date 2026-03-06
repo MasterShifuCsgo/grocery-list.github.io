@@ -25,6 +25,7 @@ export const useGroceryListStore = defineStore('grocery-list', () => {
   }
 
   function deleteItem(name: string): void {
+    console.log('delete')
     const index = groceryList.value.findIndex((item) => item.name === name)
     if (index === -1) return
 

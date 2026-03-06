@@ -18,7 +18,9 @@ const isAvailable = defineModel()
 function handleLongPress() {
   openModal(DeleteConformation, {
     userChoice: (choice: boolean) => {
-      if (choice) emit('remove', props.name);
+      if (choice) {
+        emit('remove', props.name)
+      }
       closeModal();
     }
   });
