@@ -1,17 +1,18 @@
-import { computed, ref, type Component } from 'vue'
+import { computed, markRaw, ref, shallowRef, type Component } from 'vue'
 
 
 const isOpen = ref(false)
-const component = ref<Component | null>(null)
-const componentEvents = ref<Object | null>(null)
+const component = shallowRef<Component | null>(null)
+type ModalEvents = Record<string, (...args: any[]) => void>
+const componentEvents = ref<ModalEvents>({})
 
 export const useModal = () => {
   const close = () => {
     isOpen.value = false
   }
 
-  const open = (newComponent: Component, events: Object) => {
-    component.value = newComponent
+  const open = (newComponent: Component, events: ModalEvents = {}) => {
+    component.value = markRaw(newComponent)
     componentEvents.value = events
     isOpen.value = true
   }

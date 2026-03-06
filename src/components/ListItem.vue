@@ -16,7 +16,6 @@ const emit = defineEmits<{
 const isAvailable = defineModel()
 
 function handleLongPress() {
-  console.log("long press")
   openModal(DeleteConformation, {
     userChoice: (choice: boolean) => {
       if (choice) emit('remove', props.name);
@@ -25,7 +24,13 @@ function handleLongPress() {
   });
 }
 
-onLongPress(htmlRef, handleLongPress, { delay: 200 })
+onLongPress(htmlRef, handleLongPress, {
+  delay: 200,
+  modifiers: {
+    prevent: true,
+    stop: true,
+  },
+})
 
 </script>
 <template>
