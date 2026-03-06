@@ -8,6 +8,11 @@ import Modal from './components/singeltons/Modal.vue'
 const store = useGroceryListStore();
 const newItemName = ref('')
 
+function addItem(item: string){
+  store.addItem(item)
+  newItemName.value = '';
+}
+
 </script>
 <template>      
   <Modal/>
@@ -18,9 +23,9 @@ const newItemName = ref('')
         type="text"
         placeholder="Name"
         class="w-full rounded border border-gray-300 px-2 py-1"
-        @keydown.enter="store.addItem(newItemName)"
+        @keydown.enter="addItem(newItemName)"
       />
-      <Button @click="store.addItem(newItemName)" class="bg-green-500 text-white p-2">Add</Button>
+      <Button @click="addItem(newItemName)" class="bg-green-500 text-white p-2">Add</Button>
     </div>
     <p class="text-sm text-gray-400">Long press item to delete</p>
     <ul class="w-full max-w-md list-none m-0 p-0 space-y-2">      
