@@ -1,7 +1,5 @@
 import { computed, ref, type Component } from 'vue'
 
-type ModalEvents = Record<string, (...args: unknown[]) => void>
-
 
 const isOpen = ref(false)
 const component = ref<Component | null>(null)
@@ -12,7 +10,7 @@ export const useModal = () => {
     isOpen.value = false
   }
 
-  const open = (newComponent: Component, events: ModalEvents) => {
+  const open = (newComponent: Component, events: Object) => {
     component.value = newComponent
     componentEvents.value = events
     isOpen.value = true
